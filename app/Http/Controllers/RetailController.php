@@ -192,4 +192,17 @@ class RetailController extends Controller
             'message' => 'Оплата проставлена'
         ];
     }
+
+    public function linkCrm() {
+        $linkCrm = $this->client->request->integrationModulesEdit([
+            'integrationCode' => 'cashPaymentModule',
+            'code' => 'cashPaymentModule',
+            'active' => true,
+            'baseUrl' => 'http://squuman.beget.tech/imb126/index.php',
+            'accountUrl' => 'http://squuman.beget.tech/imb126/index.php',
+            'clientId' => Auth::id()
+        ]);
+
+        return $linkCrm;
+    }
 }

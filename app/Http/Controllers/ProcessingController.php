@@ -96,4 +96,10 @@ class ProcessingController extends Controller
 
         return Redirect::route("uploadPayments")->with("end","Завершено")->send();
     }
+
+    public static function linkCrm() {
+        $retail = new RetailController();
+        $linked = $retail->linkCrm();
+        dd($linked);
+    }
 }

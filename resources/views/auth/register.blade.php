@@ -40,28 +40,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Url</label>
-
-                            <div class="col-md-6">
-                                <input id="url" type="url" class="form-control @error('url') is-invalid @enderror" name="url" required >
-
-                                @error('url')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="key" class="col-md-4 col-form-label text-md-right">ApiKey</label>
-
-                            <div class="col-md-6">
-                                <input id="key" type="text" class="form-control @error('url') is-invalid @enderror" name="key" required >
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

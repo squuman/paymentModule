@@ -74,6 +74,9 @@
                                     <a class="dropdown-item" href="{{ route('profiles_list') }}">
                                         Список профилей
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('settings') }}">
+                                        Настройки retailCRM
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
