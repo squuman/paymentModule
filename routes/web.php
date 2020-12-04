@@ -10,7 +10,6 @@
 | contains the 'web' middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -38,9 +37,11 @@ Route::get('/profiles_list', function () {
 })->name('profiles_list');
 
 Route::get('/link', 'ProcessingController@linkCrm')->name('link');
+//$_POST['clientId']
+Route::post('/settings','SettingsController@loginByCrm')->name('settings');
 
-Route::get('/settings',function () {
+Route::get('/settings/view',function () {
     return view('settings');
-})->name('settings');
+})->name('settingsView');
 
-Route::post('/settings/edit','settingsController@editSettings')->name('settingsEdit');
+Route::post('/settings/edit','SettingsController@submit')->name('settingsEdit');

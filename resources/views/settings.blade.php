@@ -17,6 +17,33 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Изменить</button>
                 </form>
+                <br>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+
+                        @foreach($errors->all() as $error)
+                            {{ $error }} <br>
+                        @endforeach
+                    </div>
+
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if(session("result"))
+                    @if(session("result") == "Модуль успешно подключен")
+                        <div class="alert alert-success mt-3">
+                            {{ session("result") }}
+                        </div>
+                    @else
+                        <div class="alert alert-danger mt-3">
+                            {{ session("result") }}
+                        </div>
+                    @endif
+                @endif
+
             </div>
         </div>
     </div>

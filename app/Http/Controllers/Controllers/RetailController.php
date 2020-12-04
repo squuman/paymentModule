@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 class RetailController extends Controller
 {
@@ -16,11 +15,12 @@ class RetailController extends Controller
     /**
      * RetailController constructor.
      */
-    public function __construct($url,$key)
+    public function __construct()
     {
+        $user = User::all()->where("id", Auth::id())->toArray()[0];
         $this->client = new \RetailCrm\ApiClient(
-            $url,
-            $key,
+            $user["url"],
+            $user["key"],
             \RetailCrm\ApiClient::V5
         );
 
@@ -193,26 +193,16 @@ class RetailController extends Controller
         ];
     }
 
-    public function linkCrm($id) {
+    public function linkCrm() {
         $linkCrm = $this->client->request->integrationModulesEdit([
             'integrationCode' => 'cashPaymentModule',
             'code' => 'cashPaymentModule',
             'active' => true,
             'baseUrl' => 'http://squuman.beget.tech/imb126/public/index.php',
             'accountUrl' => 'http://squuman.beget.tech/imb126/public/settings',
-            'clientId' => $id
+            'clientId' => Auth::id()
         ]);
-        if ($linkCrm->isSuccessful())
-            return true;
-        else
-            return false;
-    }
 
-    public function checkKey() {
-        $check = $this->client->request->availableVersions();
-        if ($check->isSuccessful())
-            return true;
-        else
-            return false;
+        return $linkCrm;
     }
 }
